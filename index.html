@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>City Life Vocab · Flashcard 8p1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-city:#070a13;
+  --bg-card:rgba(15, 23, 42, 0.75);
+  --bg-card-hover:rgba(30, 41, 59, 0.85);
+  
+  --neon-blue:#38bdf8;
+  --neon-pink:#ec4899;
+  --neon-yellow:#fbbf24;
+  --neon-purple:#a855f7;
+  --neon-green:#10b981;
+  --neon-red:#ef4444;
+  
+  --text-main:#f8fafc;
+  --text-muted:#94a3b8;
+  
+  --border-light:rgba(255,255,255,0.08);
+  --border-glow-blue:rgba(56, 189, 248, 0.4);
+  --border-glow-pink:rgba(236, 72, 153, 0.4);
+  
+  --shadow-glow:0 0 20px rgba(56, 189, 248, 0.15);
+  --glass-blur:blur(12px);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:'Outfit',system-ui,-apple-system,sans-serif;
+  color:var(--text-main);
+  background-color:var(--bg-city);
+  min-height:100vh;
+  padding-bottom:80px;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ===== CITY LIFE BACKGROUND ===== */
+.bg-city-scape {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+/* The skyline silhouette */
+.skyline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 350px;
+  background-image: 
+    linear-gradient(to top, #0f172a 0%, transparent 100%),
+    repeating-linear-gradient(90deg, transparent, transparent 40px, #1e293b 40px, #1e293b 45px, transparent 45px, transparent 90px, #0f172a 90px, #0f172a 140px);
+  background-size: 100% 100%, 300px 100%;
+  opacity: 0.6;
+  mask-image: linear-gradient(to top, black 20%, transparent 100%);
+}
+/* Glowing city lights */
+.city-lights {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(1.5px 1.5px at 20px 30px, #fbbf24, transparent),
+    radial-gradient(2px 2px at 40px 70px, #38bdf8, transparent),
+    radial-gradient(1.5px 1.5px at 90px 40px, #ec4899, transparent),
+    radial-gradient(2px 2px at 160px 120px, #fbbf24, transparent),
+    radial-gradient(1.5px 1.5px at 230px 50px, #38bdf8, transparent),
+    radial-gradient(2px 2px at 300px 90px, #fbbf24, transparent);
+  background-size: 350px 200px;
+  animation: twinkle 4s infinite alternate;
+}
+@keyframes twinkle {
+  0% { opacity: 0.4; }
+  100% { opacity: 0.9; }
+}
+/* Ambient glow spots */
+.ambient-glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.25;
+}
+.ambient-glow.blue { top: -10%; left: -10%; background: var(--neon-blue); }
+.ambient-glow.pink { bottom: -20%; right: -10%; background: var(--neon-pink); }
+
+/* ===== LAYOUT ===== */
+.wrap { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+/* ===== HEADER ===== */
+.hero { text-align: center; padding: 40px 10px 20px; }
+.hero .logo {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 76px; height: 76px; border-radius: 20px;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(236, 72, 153, 0.15));
+  border: 1px solid var(--border-glow-blue);
+  box-shadow: var(--shadow-glow);
+  margin-bottom: 20px;
+  animation: floatUp 5s ease-in-out infinite;
+}
+@keyframes floatUp { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+.hero .logo svg { width: 40px; height: 40px; stroke: var(--neon-blue); fill: none; stroke-width: 1.5; }
+.hero h1 {
+  font-size: clamp(28px, 5vw, 46px); font-weight: 800; letter-spacing: -1px; line-height: 1.1;
+  background: linear-gradient(90deg, #fff, var(--neon-blue), var(--neon-pink));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  margin-bottom: 12px;
+}
+.hero p { font-size: 15px; color: var(--text-muted); font-weight: 400; }
+.hero .tags { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 18px; }
+.tag {
+  font-family: 'Fira Code', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.5px;
+  padding: 6px 14px; border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border-light);
+  color: var(--text-muted);
+}
+.tag.blue { color: var(--neon-blue); border-color: rgba(56, 189, 248, 0.3); background: rgba(56, 189, 248, 0.08); }
+.tag.pink { color: var(--neon-pink); border-color: rgba(236, 72, 153, 0.3); background: rgba(236, 72, 153, 0.08); }
+
+/* ===== TABS ===== */
+.tabs { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin: 30px 0 24px; }
+.tab {
+  font-family: 'Outfit', sans-serif; cursor: pointer; font-weight: 600; font-size: 14px;
+  padding: 12px 24px; border-radius: 12px;
+  border: 1px solid var(--border-light);
+  background: rgba(15, 23, 42, 0.5);
+  color: var(--text-muted);
+  backdrop-filter: var(--glass-blur);
+  transition: all 0.25s ease;
+  display: flex; align-items: center; gap: 8px;
+}
+.tab:hover { border-color: var(--border-glow-blue); color: #fff; transform: translateY(-2px); }
+.tab.active {
+  background: rgba(56, 189, 248, 0.12);
+  color: var(--neon-blue);
+  border-color: var(--neon-blue);
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+}
+.tab svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+/* ===== PANELS ===== */
+.panel { display: none; animation: fadeIn 0.4s ease; }
+.panel.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ===== STATS ===== */
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; max-width: 900px; margin: 0 auto 30px; }
+.stat {
+  background: var(--bg-card); backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-light); border-radius: 16px;
+  padding: 20px; position: relative; overflow: hidden;
+  transition: all 0.3s ease;
+}
+.stat:hover { transform: translateY(-4px); border-color: var(--border-glow-blue); }
+.stat::before {
+  content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+  background: var(--neon-blue); box-shadow: 0 0 10px var(--neon-blue);
+}
+.stat.pink::before { background: var(--neon-pink); box-shadow: 0 0 10px var(--neon-pink); }
+.stat.green::before { background: var(--neon-green); box-shadow: 0 0 10px var(--neon-green); }
+.stat.yellow::before { background: var(--neon-yellow); box-shadow: 0 0 10px var(--neon-yellow); }
+.stat .num { font-family: 'Fira Code', monospace; font-size: 28px; font-weight: 700; color: #fff; line-height: 1; }
+.stat.pink .num { color: var(--neon-pink); }
+.stat.green .num { color: var(--neon-green); }
+.stat.yellow .num { color: var(--neon-yellow); }
+.stat .lbl { font-size: 12px; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 6px; }
+
+/* ===== TOOLBAR ===== */
+.toolbar { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; justify-content: center; margin-bottom: 24px; }
+.toolbar select, .toolbar input {
+  font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 500;
+  padding: 12px 16px; border-radius: 12px;
+  border: 1px solid var(--border-light);
+  background: var(--bg-card); color: #fff;
+  outline: none; backdrop-filter: var(--glass-blur);
+  transition: all 0.2s;
+}
+.toolbar select:focus, .toolbar input:focus { border-color: var(--neon-blue); box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15); }
+.toolbar input { min-width: 200px; flex: 1; max-width: 300px; }
+.toolbar input::placeholder { color: rgba(148, 163, 184, 0.6); }
+.toolbar select option { background: var(--bg-city); color: #fff; }
+.btn {
+  font-family: 'Outfit', sans-serif; cursor: pointer; font-weight: 600; font-size: 14px;
+  padding: 12px 20px; border-radius: 12px; border: none;
+  background: var(--neon-blue); color: #000;
+  transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 0 20px rgba(56, 189, 248, 0.4); }
+.btn.mag { background: var(--neon-pink); color: #fff; }
+.btn.mag:hover { box-shadow: 0 0 20px rgba(236, 72, 153, 0.4); }
+.btn.green { background: var(--neon-green); color: #000; }
+.btn.green:hover { box-shadow: 0 0 20px rgba(16, 185, 129, 0.4); }
+.btn.ghost {
+  background: rgba(255, 255, 255, 0.05); color: var(--text-main);
+  border: 1px solid var(--border-light);
+}
+.btn.ghost:hover { background: rgba(255, 255, 255, 0.1); border-color: var(--text-muted); box-shadow: none; }
+
+/* ===== PROGRESS BAR ===== */
+.progress-strip { max-width: 800px; margin: 0 auto 24px; }
+.pbar { height: 8px; border-radius: 99px; background: rgba(255,255,255,0.05); overflow: hidden; border: 1px solid var(--border-light); }
+.pbar span {
+  display: block; height: 100%; width: 0; border-radius: 99px;
+  background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 10px rgba(236, 72, 153, 0.5);
+}
+.plegend { display: flex; justify-content: space-between; font-size: 12px; font-weight: 500; color: var(--text-muted); margin-top: 8px; font-family: 'Fira Code', monospace; }
+
+/* ===== FLASHCARD ===== */
+.counter { text-align: center; font-family: 'Fira Code', monospace; font-size: 13px; font-weight: 600; color: var(--neon-blue); letter-spacing: 1px; margin-bottom: 16px; }
+.counter .srs { display: inline-block; margin-left: 10px; padding: 4px 10px; border-radius: 6px; font-size: 10px; background: rgba(16, 185, 129, 0.15); color: var(--neon-green); border: 1px solid rgba(16, 185, 129, 0.3); }
+.counter .srs.new { background: rgba(148, 163, 184, 0.15); color: var(--text-muted); border-color: rgba(148, 163, 184, 0.3); }
+.counter .srs.learn { background: rgba(251, 191, 36, 0.15); color: var(--neon-yellow); border-color: rgba(251, 191, 36, 0.3); }
+.counter .srs.rev { background: rgba(168, 85, 247, 0.15); color: var(--neon-purple); border-color: rgba(168, 85, 247, 0.3); }
+
+.scene { perspective: 1800px; width: 100%; max-width: 800px; margin: 0 auto; }
+.flashcard {
+  position: relative; width: 100%; height: clamp(400px, 60vh, 510px);
+  transform-style: preserve-3d; transition: transform 0.65s cubic-bezier(0.5, 0.05, 0.25, 1); cursor: pointer;
+}
+.flashcard.flipped { transform: rotateY(180deg); }
+.face {
+  position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  border-radius: 24px; padding: 32px 30px;
+  display: flex; flex-direction: column; overflow-y: auto;
+  backdrop-filter: var(--glass-blur);
+}
+.face::-webkit-scrollbar { width: 6px; }
+.face::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.2); border-radius: 3px; }
+
+.front {
+  background: linear-gradient(155deg, rgba(15, 23, 42, 0.9), rgba(7, 10, 19, 0.9));
+  border: 1px solid var(--border-glow-blue);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5), inset 0 0 60px rgba(56, 189, 248, 0.05);
+  align-items: center; justify-content: center; text-align: center; position: relative;
+}
+.front::before {
+  content: ""; position: absolute; inset: 14px; border-radius: 16px;
+  border: 1px dashed rgba(56, 189, 248, 0.2); pointer-events: none;
+}
+.front .cat-tag {
+  position: absolute; top: 24px; left: 50%; transform: translateX(-50%);
+  font-family: 'Fira Code', monospace; font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--neon-pink); background: rgba(236, 72, 153, 0.1);
+  padding: 6px 16px; border-radius: 8px; border: 1px solid rgba(236, 72, 153, 0.3);
+}
+.front .fav-btn {
+  position: absolute; top: 18px; right: 18px; z-index: 3;
+  background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-light);
+  color: var(--text-muted); width: 36px; height: 36px; border-radius: 10px;
+  display: grid; place-items: center; cursor: pointer; transition: all 0.2s; font-size: 18px;
+}
+.front .fav-btn:hover { background: rgba(251, 191, 36, 0.15); color: var(--neon-yellow); }
+.front .fav-btn.on { background: rgba(251, 191, 36, 0.2); color: var(--neon-yellow); border-color: var(--neon-yellow); box-shadow: 0 0 15px rgba(251, 191, 36, 0.3); }
+
+.front .type {
+  font-family: 'Fira Code', monospace; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--neon-blue); background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2);
+  padding: 6px 18px; border-radius: 8px; margin-bottom: 24px;
+}
+.front .word {
+  font-family: 'Outfit', sans-serif; font-size: clamp(26px, 5.5vw, 46px); font-weight: 700; line-height: 1.2;
+  color: #fff; letter-spacing: -0.5px; text-shadow: 0 0 30px rgba(56, 189, 248, 0.3);
+  padding: 0 10px; word-break: break-word;
+}
+.front .hint {
+  margin-top: 30px; font-size: 12px; font-weight: 500; color: var(--text-muted); letter-spacing: 0.5px;
+  display: flex; align-items: center; gap: 8px;
+}
+.front .hint kbd {
+  font-family: 'Fira Code', monospace; font-size: 10px; background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2); padding: 2px 8px; border-radius: 4px; color: #fff;
+}
+
+.back {
+  transform: rotateY(180deg);
+  background: linear-gradient(155deg, rgba(15, 23, 42, 0.95), rgba(7, 10, 19, 0.95));
+  border: 1px solid var(--border-glow-pink);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5), inset 0 0 60px rgba(236, 72, 153, 0.05);
+}
+.back .sec { margin-bottom: 20px; }
+.back .sec:last-child { margin-bottom: 0; }
+.back .lbl {
+  font-family: 'Fira Code', monospace; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--neon-pink); margin-bottom: 8px; display: flex; align-items: center; gap: 8px;
+}
+.back .lbl::before { content: ""; width: 16px; height: 2px; background: var(--neon-pink); border-radius: 2px; box-shadow: 0 0 8px var(--neon-pink); }
+.back .vi { font-size: clamp(18px, 3.5vw, 24px); font-weight: 600; color: #fff; line-height: 1.4; }
+.back .ex {
+  font-family: 'Fira Code', monospace; font-size: 14px; color: var(--neon-blue); line-height: 1.6;
+  background: rgba(56, 189, 248, 0.08); border-left: 3px solid var(--neon-blue);
+  padding: 12px 16px; border-radius: 0 10px 10px 0;
+}
+.back .syn {
+  font-size: 14px; font-weight: 500; color: var(--neon-green); line-height: 1.55;
+  background: rgba(16, 185, 129, 0.08); border-left: 3px solid var(--neon-green);
+  padding: 10px 14px; border-radius: 0 10px 10px 0;
+}
+
+/* ===== CONTROLS ===== */
+.controls { display: flex; gap: 12px; justify-content: center; align-items: center; margin-top: 28px; flex-wrap: wrap; }
+.nav-btn {
+  width: 56px; height: 56px; border-radius: 14px; display: grid; place-items: center;
+  font-size: 22px; font-weight: 700; cursor: pointer; font-family: inherit;
+  border: 1px solid var(--border-light); background: rgba(15, 23, 42, 0.7); color: var(--text-main);
+  transition: all 0.2s; backdrop-filter: var(--glass-blur);
+}
+.nav-btn:hover { background: rgba(255, 255, 255, 0.1); border-color: var(--neon-blue); transform: scale(1.05); box-shadow: 0 0 15px rgba(56, 189, 248, 0.2); }
+.nav-btn:disabled { opacity: 0.3; cursor: not-allowed; transform: none; box-shadow: none; }
+.flip-btn {
+  padding: 16px 36px; border-radius: 14px; border: none; cursor: pointer; font-family: inherit;
+  font-weight: 700; font-size: 15px; letter-spacing: 0.5px;
+  background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+  color: #fff; box-shadow: 0 10px 25px rgba(56, 189, 248, 0.25);
+  transition: all 0.2s; display: flex; align-items: center; gap: 10px;
+}
+.flip-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(56, 189, 248, 0.4); }
+.flip-btn svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2.2; }
+
+.srs-btns { display: flex; gap: 10px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+.srs-btn {
+  font-family: 'Outfit', sans-serif; cursor: pointer; font-weight: 600; font-size: 13px;
+  padding: 12px 20px; border-radius: 12px; border: 1px solid; transition: all 0.2s;
+  display: flex; align-items: center; gap: 8px; background: transparent;
+}
+.srs-btn.again { border-color: rgba(239, 68, 68, 0.4); color: var(--neon-red); }
+.srs-btn.again:hover { background: rgba(239, 68, 68, 0.1); box-shadow: 0 0 15px rgba(239, 68, 68, 0.2); }
+.srs-btn.good { border-color: rgba(251, 191, 36, 0.4); color: var(--neon-yellow); }
+.srs-btn.good:hover { background: rgba(251, 191, 36, 0.1); box-shadow: 0 0 15px rgba(251, 191, 36, 0.2); }
+.srs-btn.easy { border-color: rgba(16, 185, 129, 0.4); color: var(--neon-green); }
+.srs-btn.easy:hover { background: rgba(16, 185, 129, 0.1); box-shadow: 0 0 15px rgba(16, 185, 129, 0.2); }
+
+/* ===== QUIZ / TYPING / MATCH CONTAINERS ===== */
+.quiz-box, .typing-box, .match-box {
+  max-width: 800px; margin: 0 auto;
+  background: var(--bg-card); backdrop-filter: var(--glass-blur);
+  border-radius: 24px; padding: 32px;
+  border: 1px solid var(--border-light);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4); position: relative; overflow: hidden;
+}
+.quiz-box::before, .typing-box::before, .match-box::before {
+  content: ""; position: absolute; top: -80px; right: -80px; width: 250px; height: 250px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.1), transparent 70%); border-radius: 50%;
+}
+.quiz-top { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 12px; position: relative; z-index: 1; }
+.q-badge {
+  font-family: 'Fira Code', monospace; font-size: 12px; font-weight: 700; letter-spacing: 1px; color: #000;
+  background: var(--neon-blue); padding: 8px 16px; border-radius: 8px;
+}
+.q-score { font-family: 'Fira Code', monospace; font-size: 13px; font-weight: 700; color: var(--neon-green); }
+.progress-bar { height: 8px; border-radius: 99px; background: rgba(255,255,255,0.05); overflow: hidden; margin: 18px 0 24px; position: relative; z-index: 1; border: 1px solid var(--border-light); }
+.progress-bar span { display: block; height: 100%; width: 0; border-radius: 99px; background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple)); transition: width 0.5s ease; box-shadow: 0 0 10px rgba(56, 189, 248, 0.4); }
+.q-text { font-size: clamp(16px, 3vw, 20px); font-weight: 500; color: var(--text-main); line-height: 1.6; margin-bottom: 24px; position: relative; z-index: 1; }
+.q-text .qword { font-family: 'Fira Code', monospace; font-weight: 700; color: #000; background: var(--neon-blue); padding: 4px 12px; border-radius: 8px; }
+.q-text em { color: var(--neon-blue); font-style: italic; font-family: 'Fira Code', monospace; font-size: 0.95em; }
+.options { display: grid; gap: 12px; position: relative; z-index: 1; }
+.opt {
+  font-family: 'Outfit', sans-serif; text-align: left; cursor: pointer;
+  padding: 16px 20px; border-radius: 14px;
+  border: 1px solid var(--border-light);
+  background: rgba(255, 255, 255, 0.03); color: var(--text-main);
+  font-size: 15px; font-weight: 500; line-height: 1.5;
+  transition: all 0.15s; display: flex; gap: 14px; align-items: flex-start;
+}
+.opt .key {
+  flex: 0 0 28px; height: 28px; border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08); color: var(--text-muted);
+  font-family: 'Fira Code', monospace; font-weight: 700; font-size: 13px;
+  display: grid; place-items: center; transition: all 0.15s;
+}
+.opt:hover:not(.locked) { border-color: var(--neon-blue); background: rgba(56, 189, 248, 0.08); transform: translateX(6px); box-shadow: 0 0 20px rgba(56, 189, 248, 0.1); }
+.opt.correct { background: rgba(16, 185, 129, 0.15); border-color: var(--neon-green); color: #fff; }
+.opt.correct .key { background: var(--neon-green); color: #000; box-shadow: 0 0 10px rgba(16, 185, 129, 0.4); }
+.opt.wrong { background: rgba(239, 68, 68, 0.15); border-color: var(--neon-red); color: #ffd9e0; }
+.opt.wrong .key { background: var(--neon-red); color: #fff; }
+.opt.locked { cursor: default; }
+.feedback { margin-top: 20px; padding: 16px 20px; border-radius: 14px; font-size: 14px; font-weight: 500; line-height: 1.6; display: none; position: relative; z-index: 1; }
+.feedback.show { display: block; animation: fadeIn 0.3s; }
+.feedback.ok { background: rgba(16, 185, 129, 0.1); color: #c7ffe5; border-left: 4px solid var(--neon-green); }
+.feedback.no { background: rgba(239, 68, 68, 0.1); color: #ffd9e0; border-left: 4px solid var(--neon-red); }
+.feedback b { color: #fff; font-weight: 700; }
+.quiz-actions { display: flex; gap: 12px; justify-content: flex-end; margin-top: 24px; flex-wrap: wrap; position: relative; z-index: 1; }
+
+/* RESULT */
+.result { text-align: center; padding: 30px 15px; position: relative; z-index: 1; }
+.result .ring {
+  width: 170px; height: 170px; border-radius: 50%; margin: 0 auto 24px;
+  display: grid; place-items: center;
+  background: conic-gradient(var(--neon-blue) var(--pct,0%), rgba(255,255,255,0.05) 0);
+  position: relative;
+}
+.result .ring::after {
+  content: ""; position: absolute; inset: 14px; border-radius: 50%;
+  background: var(--bg-city); border: 1px solid var(--border-light);
+}
+.result .ring .num { position: relative; z-index: 1; font-family: 'Fira Code', monospace; font-size: 38px; font-weight: 800; color: #fff; line-height: 1; }
+.result .ring .num small { display: block; font-size: 12px; font-weight: 700; color: var(--neon-blue); letter-spacing: 1.5px; margin-top: 6px; }
+.result .msg { font-size: 18px; font-weight: 700; color: #fff; margin: 16px 0 8px; }
+.result .sub { font-size: 14px; color: var(--text-muted); font-weight: 400; margin-bottom: 24px; line-height: 1.5; }
+
+/* TYPING */
+.type-header { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; position: relative; z-index: 1; }
+.type-prompt { font-size: 17px; font-weight: 500; color: var(--text-main); line-height: 1.6; margin-bottom: 10px; position: relative; z-index: 1; }
+.type-prompt .vi-hl { color: var(--neon-green); font-weight: 700; }
+.type-hint { font-family: 'Fira Code', monospace; font-size: 13px; color: var(--text-muted); margin-bottom: 20px; position: relative; z-index: 1; }
+.type-hint .blurred { filter: blur(6px); user-select: none; transition: filter 0.3s; }
+.type-hint.revealed .blurred { filter: none; }
+.type-input-wrap { display: flex; gap: 12px; position: relative; z-index: 1; flex-wrap: wrap; }
+.type-input {
+  flex: 1; min-width: 200px; font-family: 'Fira Code', monospace;
+  font-size: 18px; font-weight: 700; padding: 16px 20px; border-radius: 14px;
+  border: 1px solid var(--border-light); background: rgba(0,0,0,0.3); color: var(--neon-blue); outline: none; transition: all 0.2s;
+}
+.type-input:focus { border-color: var(--neon-blue); box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15); }
+.type-input.correct { border-color: var(--neon-green); color: var(--neon-green); box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15); }
+.type-input.wrong { border-color: var(--neon-red); color: var(--neon-red); box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15); animation: shake 0.4s; }
+@keyframes shake { 0%,100% { transform: translateX(0); } 20%,60% { transform: translateX(-6px); } 40%,80% { transform: translateX(6px); } }
+.type-feedback { margin-top: 18px; padding: 14px 18px; border-radius: 12px; font-size: 14px; font-weight: 600; display: none; position: relative; z-index: 1; }
+.type-feedback.show { display: block; animation: fadeIn 0.3s; }
+.type-feedback.ok { background: rgba(16, 185, 129, 0.1); color: #c7ffe5; border-left: 4px solid var(--neon-green); }
+.type-feedback.no { background: rgba(239, 68, 68, 0.1); color: #ffd9e0; border-left: 4px solid var(--neon-red); }
+.type-feedback .ans { font-family: 'Fira Code', monospace; color: var(--neon-blue); font-weight: 700; }
+
+/* MATCH GAME */
+.match-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; position: relative; z-index: 1; }
+.match-score { font-family: 'Fira Code', monospace; font-size: 15px; font-weight: 700; color: var(--neon-green); }
+.match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; position: relative; z-index: 1; }
+.match-col { display: flex; flex-direction: column; gap: 12px; }
+.match-item {
+  font-family: 'Outfit', sans-serif; padding: 16px 18px; border-radius: 12px; cursor: pointer;
+  border: 1px solid var(--border-light); background: rgba(255, 255, 255, 0.03); color: var(--text-main);
+  font-size: 14px; font-weight: 500; line-height: 1.4; transition: all 0.15s; text-align: left;
+}
+.match-item:hover:not(.matched):not(.selected) { border-color: var(--neon-blue); background: rgba(56, 189, 248, 0.08); transform: translateX(4px); }
+.match-item.selected { border-color: var(--neon-yellow); background: rgba(251, 191, 36, 0.1); box-shadow: 0 0 15px rgba(251, 191, 36, 0.2); }
+.match-item.matched { opacity: 0.2; pointer-events: none; border-color: var(--neon-green); background: rgba(16, 185, 129, 0.05); }
+.match-item.wrong-match { border-color: var(--neon-red); background: rgba(239, 68, 68, 0.1); animation: shake 0.4s; }
+.match-success { text-align: center; margin-top: 28px; font-size: 20px; font-weight: 700; color: var(--neon-green); display: none; position: relative; z-index: 1; }
+.match-success.show { display: block; animation: fadeIn 0.4s; }
+
+/* ===== LIST ===== */
+.list-search { max-width: 600px; margin: 0 auto 24px; display: flex; gap: 12px; }
+.list-search input {
+  flex: 1; font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 500;
+  padding: 16px 20px; border-radius: 14px;
+  border: 1px solid var(--border-light); background: var(--bg-card); color: #fff; outline: none; backdrop-filter: var(--glass-blur);
+}
+.list-search input::placeholder { color: var(--text-muted); }
+.list-search input:focus { border-color: var(--neon-blue); box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15); }
+.grp { margin-bottom: 32px; }
+.grp h3 { font-family: 'Fira Code', monospace; font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--neon-blue); margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+.grp h3 .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--neon-blue); box-shadow: 0 0 12px var(--neon-blue); flex: 0 0 auto; }
+.grp h3::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(56, 189, 248, 0.3), transparent); }
+.row { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-light); border-radius: 14px; padding: 16px 20px; margin-bottom: 10px; display: grid; gap: 6px; transition: all 0.2s; }
+.row:hover { background: rgba(255, 255, 255, 0.06); border-color: var(--border-glow-blue); transform: translateX(6px); }
+.row .w-line { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.row .w { font-family: 'Fira Code', monospace; font-size: 16px; font-weight: 700; color: #fff; }
+.row .t { font-family: 'Fira Code', monospace; font-size: 11px; font-weight: 600; color: var(--neon-pink); letter-spacing: 0.5px; }
+.row .vi { font-size: 15px; font-weight: 500; color: var(--neon-blue); }
+.row .ex { font-family: 'Fira Code', monospace; font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+.row .fav-mark { color: var(--neon-yellow); font-size: 14px; }
+.empty { text-align: center; padding: 50px 20px; color: var(--text-muted); opacity: 0.7; font-weight: 500; }
+
+/* ===== FOOTER ===== */
+.footer { text-align: center; margin-top: 60px; font-size: 13px; color: var(--text-muted); font-weight: 400; letter-spacing: 0.5px; position: relative; z-index: 1; line-height: 2; font-family: 'Fira Code', monospace; }
+.footer .ok { color: var(--neon-green); }
+
+@media(max-width: 600px) {
+  .face { padding: 24px 20px; border-radius: 20px; }
+  .quiz-box, .typing-box, .match-box { padding: 24px 18px; border-radius: 20px; }
+  .tab { padding: 10px 16px; font-size: 13px; }
+  .nav-btn { width: 48px; height: 48px; font-size: 18px; }
+  .flip-btn { padding: 14px 28px; font-size: 14px; }
+  .front .cat-tag { font-size: 9px; padding: 4px 10px; top: 16px; }
+  .front .fav-btn { top: 12px; right: 12px; width: 32px; height: 32px; font-size: 15px; }
+  .result .ring { width: 140px; height: 140px; }
+  .result .ring .num { font-size: 32px; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .stat .num { font-size: 24px; }
+  .match-grid { grid-template-columns: 1fr; gap: 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== CITY BACKGROUND ===== -->
+<div class="bg-city-scape">
+  <div class="ambient-glow blue"></div>
+  <div class="ambient-glow pink"></div>
+  <div class="city-lights"></div>
+  <div class="skyline"></div>
+</div>
+
+<div class="wrap">
+
+  <!-- ===== HEADER ===== -->
+  <header class="hero">
+    <div class="logo">
+      <svg viewBox="0 0 24 24">
+        <path d="M3 21h18M5 21V7l5-4 5 4v14M15 21V11l4-2 4 2v10M9 9h2M9 13h2M9 17h2"/>
+        <circle cx="12" cy="12" r="1" fill="currentColor"/>
+      </svg>
+    </div>
+    <h1>CITY LIFE VOCAB</h1>
+    <p>Tài liệu lớp 9 · 20.09.2026 · Flashcard 8p1</p>
+    <div class="tags">
+      <span class="tag blue">⚡ Spaced Repetition</span>
+      <span class="tag pink">⌨️ Typing Mode</span>
+      <span class="tag">🎮 Match Game</span>
+      <span class="tag blue">🔊 Audio</span>
+    </div>
+  </header>
+
+  <!-- ===== TABS ===== -->
+  <nav class="tabs">
+    <button class="tab active" data-tab="cards">
+      <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/></svg>
+      Flashcards
+    </button>
+    <button class="tab" data-tab="quiz">
+      <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      Quiz
+    </button>
+    <button class="tab" data-tab="typing">
+      <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M8 14h8"/></svg>
+      Typing
+    </button>
+    <button class="tab" data-tab="match">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      Match Game
+    </button>
+    <button class="tab" data-tab="list">
+      <svg viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+      Word Bank
+    </button>
+  </nav>
+
+  <!-- ===== STATS ===== -->
+  <div class="stats" id="statsDash">
+    <div class="stat">
+      <div class="num" id="stTotal">0</div>
+      <div class="lbl">Tổng số từ</div>
+    </div>
+    <div class="stat green">
+      <div class="num" id="stMastered">0</div>
+      <div class="lbl">Đã thuộc</div>
+    </div>
+    <div class="stat yellow">
+      <div class="num" id="stLearning">0</div>
+      <div class="lbl">Đang học</div>
+    </div>
+    <div class="stat pink">
+      <div class="num" id="stFav">0</div>
+      <div class="lbl">Yêu thích</div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARDS ===== -->
+  <section class="panel active" id="panel-cards">
+    <div class="toolbar">
+      <select id="catFilter"><option value="all">🌐 Tất cả nhóm</option></select>
+      <input type="text" id="searchBox" placeholder="🔍 Tìm từ, nghĩa, ví dụ...">
+      <select id="srsFilter">
+        <option value="all">Mọi trạng thái</option>
+        <option value="new">🆕 Chưa học</option>
+        <option value="learning">📖 Đang học</option>
+        <option value="review">🔄 Cần ôn</option>
+        <option value="mastered">✅ Đã thuộc</option>
+        <option value="fav">⭐ Yêu thích</option>
+      </select>
+      <button class="btn ghost" id="shuffleBtn">
+        <svg viewBox="0 0 24 24"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
+        Xáo trộn
+      </button>
+    </div>
+
+    <div class="progress-strip">
+      <div class="pbar"><span id="pBar"></span></div>
+      <div class="plegend">
+        <span id="pLegend">0 / 0 mastered</span>
+        <span id="pPct">0%</span>
+      </div>
+    </div>
+
+    <div class="counter">
+      <span id="counterText">1 / 1</span>
+      <span class="srs new" id="srsBadge">NEW</span>
+    </div>
+
+    <div class="scene">
+      <div class="flashcard" id="flashcard">
+        <div class="face front">
+          <span class="cat-tag" id="cardCat">—</span>
+          <button class="fav-btn" id="favBtn" title="Yêu thích">☆</button>
+          <div class="type" id="cardType">n</div>
+          <div class="word" id="cardWord">word</div>
+          <div class="hint">
+            <kbd>Space</kbd> lật · <kbd>←</kbd><kbd>→</kbd> di chuyển · <kbd>P</kbd> phát âm
+          </div>
+        </div>
+        <div class="face back">
+          <div class="sec">
+            <div class="lbl">Nghĩa tiếng Việt</div>
+            <div class="vi" id="backVi"></div>
+          </div>
+          <div class="sec" id="exSec">
+            <div class="lbl">Ví dụ / Collocation</div>
+            <div class="ex" id="backEx"></div>
+          </div>
+          <div class="sec" id="synSec">
+            <div class="lbl">Đồng nghĩa / Ghi chú</div>
+            <div class="syn" id="backSyn"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="nav-btn" id="prevBtn">‹</button>
+      <button class="flip-btn" id="flipBtn">
+        <svg viewBox="0 0 24 24"><path d="M1 4v6h6M23 20v-6h-6"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+        LẬT THẺ
+      </button>
+      <button class="nav-btn" id="nextBtn">›</button>
+    </div>
+
+    <div class="srs-btns" id="srsBtns">
+      <button class="srs-btn again" data-srs="again">🔁 Học lại</button>
+      <button class="srs-btn good" data-srs="good">👍 Tạm được</button>
+      <button class="srs-btn easy" data-srs="easy">⚡ Dễ ợt</button>
+    </div>
+  </section>
+
+  <!-- ===== QUIZ ===== -->
+  <section class="panel" id="panel-quiz">
+    <div class="quiz-box">
+      <div id="quizMain">
+        <div class="quiz-top">
+          <span class="q-badge" id="qBadge">CÂU 1 / 10</span>
+          <span class="q-score" id="qScore">Đúng: 0</span>
+        </div>
+        <div class="progress-bar"><span id="qProgress"></span></div>
+        <div class="q-text" id="qText"></div>
+        <div class="options" id="qOptions"></div>
+        <div class="feedback" id="qFeedback"></div>
+        <div class="quiz-actions">
+          <button class="btn" id="qNext" style="display:none">Câu tiếp →</button>
+        </div>
+      </div>
+      <div id="quizResult" style="display:none"></div>
+    </div>
+  </section>
+
+  <!-- ===== TYPING ===== -->
+  <section class="panel" id="panel-typing">
+    <div class="typing-box">
+      <div class="type-header">
+        <span class="q-badge" id="tBadge">TỪ 1 / 10</span>
+        <span class="q-score" id="tScore">Đúng: 0</span>
+      </div>
+      <div class="type-prompt" id="tPrompt"></div>
+      <div class="type-hint" id="tHint"></div>
+      <div class="type-input-wrap">
+        <input type="text" class="type-input" id="tInput" placeholder="Gõ từ tiếng Anh..." autocomplete="off" spellcheck="false">
+        <button class="btn green" id="tCheck">
+          <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+          Kiểm tra
+        </button>
+        <button class="btn ghost" id="tSkip">Bỏ qua</button>
+        <button class="btn ghost" id="tReveal" title="Hiện đáp án">👁</button>
+      </div>
+      <div class="type-feedback" id="tFeedback"></div>
+    </div>
+  </section>
+
+  <!-- ===== MATCH GAME ===== -->
+  <section class="panel" id="panel-match">
+    <div class="match-box">
+      <div class="match-header">
+        <span class="q-badge" style="background:var(--neon-green);color:#000">MATCH GAME</span>
+        <span class="match-score" id="matchScore">Đã nối: 0 / 5</span>
+      </div>
+      <p style="font-size:14px;color:var(--text-muted);margin-bottom:24px;position:relative;z-index:1">Nối từ tiếng Anh (cột trái) với nghĩa tiếng Việt (cột phải) tương ứng.</p>
+      <div class="match-grid">
+        <div class="match-col" id="matchLeft"></div>
+        <div class="match-col" id="matchRight"></div>
+      </div>
+      <div class="match-success" id="matchSuccess">
+        🎉 Xuất sắc! Bạn đã nối đúng tất cả.<br>
+        <button class="btn green" id="matchReset" style="margin-top:20px">Chơi ván mới</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LIST ===== -->
+  <section class="panel" id="panel-list">
+    <div class="list-search">
+      <input type="text" id="listSearch" placeholder="🔍 Tìm từ vựng, nghĩa tiếng Việt...">
+    </div>
+    <div id="listContainer"></div>
+  </section>
+
+  <div class="footer">
+    <span class="ok">●</span> City Life Vocab · Spaced Repetition System v3.0<br>
+    Dữ liệu lưu cục bộ trên trình duyệt của bạn
+  </div>
+</div>
+
+<script>
+/* =========================================================
+   DỮ LIỆU TỪ VỰNG — Tài liệu lớp 9 · 20.09.2026
+   ========================================================= */
+const DATA = [
+/* --- Adjectives (Tính từ) --- */
+{w:"submissive",t:"adj",vi:"phục tùng, dễ bảo",ex:"He was too submissive to argue with his boss.",syn:"obedient, compliant",c:"Adjectives"},
+{w:"expansive",t:"adj",vi:"khoa trương, kiêu ngạo; rộng lớn",ex:"He was in an expansive mood after winning the award.",syn:"expansive, broad",c:"Adjectives"},
+{w:"flirtatious",t:"adj",vi:"tán tỉnh, thích ve vãn",ex:"She gave him a flirtatious smile across the room.",syn:"coquettish, teasing",c:"Adjectives"},
+{w:"vacant",t:"adj",vi:"trống rỗng, khuyết, để trống",ex:"The seat next to me was vacant.",syn:"empty, unoccupied",c:"Adjectives"},
+{w:"reclusive",t:"adj",vi:"ẩn dật, thích sống tách biệt",ex:"The author led a reclusive existence in the countryside.",syn:"solitary, secluded",c:"Adjectives"},
+{w:"rampant",t:"adj",vi:"hoành hành, lan tràn khắp nơi",ex:"Corruption was rampant in the city government.",syn:"widespread, unchecked",c:"Adjectives"},
+{w:"steadfast",t:"adj",vi:"kiên định, vững chắc",ex:"He remained steadfast in his beliefs despite the pressure.",syn:"firm, resolute",c:"Adjectives"},
+{w:"staunch",t:"adj",vi:"trung thành, kiên định",ex:"He is a staunch supporter of the local football team.",syn:"loyal, faithful",c:"Adjectives"},
+{w:"intriguing",t:"adj",vi:"hấp dẫn, thú vị (gây tò mò)",ex:"The story has an intriguing plot that keeps you guessing.",syn:"fascinating, captivating",c:"Adjectives"},
+{w:"inquisitive",t:"adj",vi:"tò mò, thích tìm hiểu",ex:"Children are naturally inquisitive about the world.",syn:"curious, inquiring",c:"Adjectives"},
+{w:"ingenious",t:"adj",vi:"khéo léo, tài tình",ex:"She came up with an ingenious solution to the problem.",syn:"clever, inventive",c:"Adjectives"},
+{w:"captivating",t:"adj",vi:"cuốn hút, hấp dẫn",ex:"The view from the mountain was absolutely captivating.",syn:"enchanting, mesmerizing",c:"Adjectives"},
+{w:"self-effacing",t:"adj",vi:"khiêm tốn, không tự cao",ex:"He is a self-effacing man who never boasts about his success.",syn:"modest, humble",c:"Adjectives"},
+{w:"self-centred",t:"adj",vi:"tự cao tự đại, ích kỷ",ex:"He is too self-centred to care about other people's feelings.",syn:"egocentric, selfish",c:"Adjectives"},
+{w:"self-conscious",t:"adj",vi:"tự ti, ngượng ngùng",ex:"She felt self-conscious about her accent.",syn:"insecure, awkward",c:"Adjectives"},
+{w:"self-evident",t:"adj",vi:"hiển nhiên, rõ ràng",ex:"It is self-evident that we need a plan before we start.",syn:"obvious, undeniable",c:"Adjectives"},
+{w:"intact",t:"adj",vi:"nguyên vẹn, không bị hư hại",ex:"The vase remained intact after the fall.",syn:"unbroken, whole",c:"Adjectives"},
+{w:"plainly",t:"adv",vi:"rõ ràng, hiển nhiên",ex:"She was plainly upset by the news.",syn:"obviously, clearly",c:"Adjectives"},
+
+/* --- Nouns (Danh từ) --- */
+{w:"ploy",t:"n",vi:"thủ đoạn, mưu mẹo",ex:"It was just a ploy to get my attention.",syn:"tactic, trick",c:"Nouns"},
+{w:"spate",t:"n",vi:"một loạt, tràng (thường là việc xấu)",ex:"A spate of burglaries hit the area last month.",syn:"series, rash",c:"Nouns"},
+{w:"hypocrisy",t:"n",vi:"sự đạo đức giả",ex:"He condemned the hypocrisy of the government's policies.",syn:"insincerity, falseness",c:"Nouns"},
+{w:"transience",t:"n",vi:"tính tạm thời, sự ngắn ngủi",ex:"The transience of fame is a sad reality for many stars.",syn:"temporariness, brevity",c:"Nouns"},
+{w:"demise",t:"n",vi:"sự chấm dứt, sự kết thúc",ex:"The demise of the empire was sudden and unexpected.",syn:"end, downfall",c:"Nouns"},
+{w:"proposition",t:"n",vi:"lời đề nghị, đề xuất",ex:"It's an attractive business proposition.",syn:"proposal, suggestion",c:"Nouns"},
+{w:"bid",t:"n",vi:"sự đấu thầu, nỗ lực",ex:"They made a bid for the construction contract.",syn:"offer, attempt",c:"Nouns"},
+{w:"tender",t:"n",vi:"sự đấu thầu",ex:"The company won the tender for the new project.",syn:"bid, offer",c:"Nouns"},
+{w:"undertaking",t:"n",vi:"sự đảm nhận, công việc lớn",ex:"Organizing the event was a huge undertaking.",syn:"task, project",c:"Nouns"},
+{w:"barrages",t:"n",vi:"đập nước, màn chắn (quân sự)",ex:"The army built barrages across the river to stop the enemy.",syn:"dam, barrier",c:"Nouns"},
+{w:"barricades",t:"n",vi:"rào chắn (đường phố)",ex:"Police set up barricades to control the crowd.",syn:"barrier, blockade",c:"Nouns"},
+{w:"ditches",t:"n",vi:"mương, rãnh",ex:"They dug ditches to drain the water from the field.",syn:"trench, channel",c:"Nouns"},
+{w:"dykes",t:"n",vi:"đê, đập",ex:"The dykes protect the land from flooding.",syn:"levee, embankment",c:"Nouns"},
+{w:"cutbacks",t:"n",vi:"đợt cắt giảm",ex:"The company announced budget cutbacks.",syn:"reduction, cut",c:"Nouns"},
+{w:"breakdowns",t:"n",vi:"sự hỏng hóc, sự sụp đổ",ex:"The machine has frequent breakdowns.",syn:"failure, collapse",c:"Nouns"},
+{w:"outtakes",t:"n",vi:"cảnh phim bị cắt",ex:"The DVD includes funny outtakes from the movie.",syn:"blooper, deleted scene",c:"Nouns"},
+{w:"layouts",t:"n",vi:"bố cục, cách trình bày",ex:"The magazine has attractive layouts.",syn:"arrangement, design",c:"Nouns"},
+{w:"commotion",t:"n",vi:"sự náo động, sự ồn ào",ex:"There was a commotion in the street outside.",syn:"disturbance, uproar",c:"Nouns"},
+
+/* --- Verbs (Động từ) --- */
+{w:"heralded",t:"v",vi:"báo hiệu",ex:"The dawn heralded a new era for the country.",syn:"announce, signal",c:"Verbs"},
+{w:"wore off",t:"phr.v",vi:"phai nhạt, mất tác dụng",ex:"The painkiller wore off quickly.",syn:"fade, diminish",c:"Verbs"},
+{w:"died down",t:"phr.v",vi:"lắng xuống, giảm dần",ex:"The storm finally died down in the evening.",syn:"subside, abate",c:"Verbs"},
+{w:"coasted",t:"v",vi:"chạy dọc bờ biển; tiến triển dễ dàng",ex:"We coasted along the beach for miles.",syn:"glide, drift",c:"Verbs"},
+{w:"skirted",t:"v",vi:"đi vòng quanh, lảng tránh",ex:"He skirted around the issue during the interview.",syn:"evade, bypass",c:"Verbs"},
+{w:"edged",t:"v",vi:"di chuyển dần, tiến dần",ex:"She edged towards the door to leave.",syn:"move slowly, inch",c:"Verbs"},
+{w:"sided",t:"v",vi:"đứng về phía",ex:"He sided with his brother in the argument.",syn:"aligned, supported",c:"Verbs"},
+{w:"charging",t:"v",vi:"tính phí",ex:"The hotel is charging extra for breakfast.",syn:"billing, levying",c:"Verbs"},
+{w:"entrusting",t:"v",vi:"giao phó, ủy thác",ex:"I am entrusting you with this secret.",syn:"delegate, assign",c:"Verbs"},
+{w:"allotting",t:"v",vi:"phân bổ, chia phần",ex:"We are allotting 10 minutes for questions.",syn:"allocate, distribute",c:"Verbs"},
+{w:"plough",t:"v",vi:"cày (ruộng)",ex:"The farmer ploughed the field before planting.",syn:"till, cultivate",c:"Verbs"},
+{w:"burrow",t:"v",vi:"đào sâu vào, chui rúc",ex:"The rabbit burrowed into the ground.",syn:"dig, tunnel",c:"Verbs"},
+{w:"subtracts",t:"v",vi:"trừ đi",ex:"Subtract 5 from 10 to get 5.",syn:"deduct, remove",c:"Verbs"},
+{w:"protracts",t:"v",vi:"kéo dài, kéo dài thời gian",ex:"They decided to protract the negotiations.",syn:"prolong, extend",c:"Verbs"},
+{w:"attracts",t:"v",vi:"thu hút",ex:"The event attracts thousands of visitors every year.",syn:"draw, pull",c:"Verbs"},
+{w:"shatter",t:"v",vi:"phá vỡ, làm tan vỡ",ex:"A loud crash shattered the silence.",syn:"smash, break",c:"Verbs"},
+{w:"smash",t:"v",vi:"đập vỡ, phá tan",ex:"He smashed the window with a ball.",syn:"shatter, crush",c:"Verbs"},
+{w:"fracture",t:"v",vi:"gãy, làm rạn nứt",ex:"He fractured his leg skiing.",syn:"break, crack",c:"Verbs"},
+{w:"demolish",t:"v",vi:"phá dỡ, phản bác",ex:"They plan to demolish the old building.",syn:"destroy, tear down",c:"Verbs"},
+{w:"outstripped",t:"v",vi:"vượt xa, bỏ xa",ex:"Demand for the product outstripped supply.",syn:"surpass, exceed",c:"Verbs"},
+{w:"absolved",t:"v",vi:"miễn trách nhiệm, tha bổng",ex:"The court absolved him of all charges.",syn:"exonerate, clear",c:"Verbs"},
+{w:"forgiven",t:"v",vi:"tha thứ",ex:"She forgave him for his mistake.",syn:"pardon, excuse",c:"Verbs"},
+{w:"acquitted",t:"v",vi:"được tuyên bố trắng án",ex:"He was acquitted of the crime due to lack of evidence.",syn:"cleared, absolved",c:"Verbs"},
+{w:"whipped",t:"v",vi:"bị đánh bại",ex:"Our team was whipped in the final match.",syn:"beaten, defeated",c:"Verbs"},
+{w:"worked",t:"v",vi:"làm việc, có hiệu quả",ex:"The plan worked perfectly.",syn:"functioned, succeeded",c:"Verbs"},
+
+/* --- Phrases & Idioms (Cụm từ & Thành ngữ) --- */
+{w:"claim expenses",t:"phrase",vi:"yêu cầu thanh toán/hoàn trả chi phí",ex:"You can claim expenses for travel and meals.",syn:"request reimbursement",c:"Phrases"},
+{w:"coast through",t:"phr.v",vi:"vượt qua một cách dễ dàng",ex:"He coasted through the exam without studying.",syn:"pass easily, breeze through",c:"Phrases"},
+{w:"sick and tired",t:"idiom",vi:"mệt mỏi, chán ngán",ex:"I'm sick and tired of your excuses.",syn:"fed up, weary",c:"Phrases"},
+{w:"in no mood",t:"idiom",vi:"không có tâm trạng",ex:"I'm in no mood for jokes right now.",syn:"not inclined, unwilling",c:"Phrases"},
+{w:"sick to death",t:"idiom",vi:"chán gần chết",ex:"I'm sick to death of waiting for the bus.",syn:"utterly bored/fed up",c:"Phrases"},
+{w:"stand on ceremony",t:"idiom",vi:"khách sáo, giữ lễ nghi",ex:"Please don't stand on ceremony, make yourself at home.",syn:"be formal, stand on protocol",c:"Phrases"},
+{w:"fork out",t:"phr.v",vi:"trả tiền một cách miễn cưỡng",ex:"I had to fork out $50 for a new tire.",syn:"pay up, shell out",c:"Phrases"},
+{w:"dig in",t:"phr.v",vi:"bắt đầu ăn ngon lành; ăn thoải mái",ex:"Dinner is ready, dig in!",syn:"start eating, tuck in",c:"Phrases"},
+{w:"purely by chance",t:"phrase",vi:"hoàn toàn do tình cờ",ex:"I found the lost key purely by chance.",syn:"by accident, coincidentally",c:"Phrases"},
+{w:"sheer luck",t:"phrase",vi:"may mắn tình cờ",ex:"It was sheer luck that we met at the airport.",syn:"pure chance, fluke",c:"Phrases"},
+{w:"be engulfed in flames",t:"phrase",vi:"bị nhấn chìm trong biển lửa",ex:"The building was engulfed in flames within minutes.",syn:"be on fire, ablaze",c:"Phrases"},
+{w:"be engrossed in st",t:"phrase",vi:"say mê, chăm chú vào cái gì",ex:"He was engrossed in a book and didn't hear me.",syn:"absorbed, immersed",c:"Phrases"},
+{w:"profuse apologies",t:"phrase",vi:"lời xin lỗi vô cùng",ex:"He offered profuse apologies for being late.",syn:"abundant apologies",c:"Phrases"},
+{w:"do sb a good turn",t:"idiom",vi:"giúp đỡ ai",ex:"He did me a good turn by helping with the move.",syn:"do a favour",c:"Phrases"},
+{w:"sheer pleasure",t:"phrase",vi:"niềm vui thuần khiết",ex:"I read the book for sheer pleasure.",syn:"pure enjoyment",c:"Phrases"},
+{w:"be plain sailing",t:"idiom",vi:"thuận buồm xuôi gió",ex:"The project was plain sailing from start to finish.",syn:"smooth, easy",c:"Phrases"},
+{w:"detracts from",t:"phr.v",vi:"làm giảm, làm mất đi",ex:"The noise detracts from the peace of the park.",syn:"diminishes, takes away",c:"Phrases"},
+{w:"shatter the silence",t:"phrase",vi:"phá vỡ sự im lặng",ex:"A loud crash shattered the silence.",syn:"break the quiet",c:"Phrases"},
+{w:"abandoned its contents",t:"phrase",vi:"từ bỏ nội dung của nó",ex:"The ship abandoned its contents during the storm.",syn:"discarded, left behind",c:"Phrases"},
+{w:"work oneself up",t:"phr.v",vi:"tự làm bản thân lo lắng, bực bội",ex:"Don't work yourself up over a small mistake.",syn:"get agitated, stress out",c:"Phrases"}
+];
+
+/* =========================================================
+   HELPERS
+   ========================================================= */
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const shuffle = a => { const b=a.slice(); for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];} return b; };
+const escRe = s => s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+const norm = s => s.toLowerCase().trim().replace(/\s+/g,' ');
+
+/* =========================================================
+   LOCAL STORAGE
+   ========================================================= */
+const LS = 'city_life_vocab_v1';
+let store = {
+  srs: {},
+  fav: [],
+  stats: { totalReviews:0, quizTotal:0, quizCorrect:0, typingTotal:0, typingCorrect:0 }
+};
+
+function loadStore(){
+  try{
+    const raw = localStorage.getItem(LS);
+    if(raw){
+      const p = JSON.parse(raw);
+      store = { ...store, ...p, srs: p.srs||{}, fav: p.fav||[], stats: { ...store.stats, ...(p.stats||{}) } };
+    }
+  }catch(e){}
+}
+function saveStore(){
+  try{ localStorage.setItem(LS, JSON.stringify(store)); }catch(e){}
+}
+loadStore();
+
+const SRS_LABELS = ['NEW','LEARNING','REVIEW','MASTERED'];
+const SRS_CLASSES = ['new','learn','rev','grn'];
+
+function getSrs(word){
+  if(!store.srs[word]) store.srs[word] = { level:0, next:0, seen:0, correct:0 };
+  return store.srs[word];
+}
+function setSrsLevel(word, level){
+  const s = getSrs(word);
+  s.level = Math.max(0, Math.min(3, level));
+  s.seen++;
+  if(s.level>=3) s.correct++;
+  store.stats.totalReviews++;
+  saveStore();
+}
+function isFav(word){ return store.fav.includes(word); }
+function toggleFav(word){
+  if(isFav(word)) store.fav = store.fav.filter(w=>w!==word);
+  else store.fav.push(word);
+  saveStore();
+}
+
+/* =========================================================
+   AUDIO
+   ========================================================= */
+let voice = null;
+function pickVoice(){
+  if(!('speechSynthesis' in window)) return;
+  const vs = speechSynthesis.getVoices();
+  voice = vs.find(v=>v.lang.startsWith('en') && v.name.includes('Google'))
+       || vs.find(v=>v.lang.startsWith('en-US'))
+       || vs.find(v=>v.lang.startsWith('en'))
+       || null;
+}
+if('speechSynthesis' in window){
+  pickVoice();
+  speechSynthesis.onvoiceschanged = pickVoice;
+}
+function speak(text){
+  if(!('speechSynthesis' in window)) return;
+  try{
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'en-US'; u.rate = 0.92; u.pitch = 1;
+    if(voice) u.voice = voice;
+    speechSynthesis.speak(u);
+  }catch(e){}
+}
+
+/* =========================================================
+   TABS
+   ========================================================= */
+$$('.tab').forEach(t=>{
+  t.addEventListener('click',()=>{
+    $$('.tab').forEach(x=>x.classList.remove('active'));
+    $$('.panel').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    $('#panel-'+t.dataset.tab).classList.add('active');
+    if(t.dataset.tab==='list') renderList();
+    if(t.dataset.tab==='quiz' && !quizState.questions.length) startQuiz();
+    if(t.dataset.tab==='typing' && !typingState.words.length) startTyping();
+    if(t.dataset.tab==='match') startMatch();
+    updateStats();
+  });
+});
+
+/* =========================================================
+   STATS DASHBOARD
+   ========================================================= */
+function updateStats(){
+  const total = DATA.length;
+  let mastered=0, learning=0;
+  DATA.forEach(d=>{
+    const s = store.srs[d.w];
+    if(s){ if(s.level>=3) mastered++; else if(s.level>0) learning++; }
+  });
+  $('#stTotal').textContent = total;
+  $('#stMastered').textContent = mastered;
+  $('#stLearning').textContent = learning;
+  $('#stFav').textContent = store.fav.length;
+
+  const pct = total ? Math.round(mastered/total*100) : 0;
+  $('#pBar').style.width = pct + '%';
+  $('#pLegend').textContent = `${mastered} / ${total} mastered`;
+  $('#pPct').textContent = pct + '%';
+}
+
+/* =========================================================
+   FLASHCARDS
+   ========================================================= */
+const cardEl = $('#flashcard');
+let deck = [], cur = 0, flipped = false;
+
+const cats = [...new Set(DATA.map(d=>d.c))];
+cats.forEach(c=>{
+  const o=document.createElement('option');
+  o.value=c; o.textContent=c;
+  $('#catFilter').appendChild(o);
+});
+
+function buildDeck(){
+  const cat = $('#catFilter').value;
+  const srsF = $('#srsFilter').value;
+  const q = $('#searchBox').value.trim().toLowerCase();
+  deck = DATA.filter(d=>{
+    const okCat = cat==='all' || d.c===cat;
+    const okQ = !q
+      || d.w.toLowerCase().includes(q)
+      || d.vi.toLowerCase().includes(q)
+      || (d.ex||'').toLowerCase().includes(q)
+      || (d.syn||'').toLowerCase().includes(q);
+    let okSrs = true;
+    const s = store.srs[d.w];
+    const lvl = s ? s.level : 0;
+    if(srsF==='new') okSrs = lvl===0;
+    else if(srsF==='learning') okSrs = lvl===1;
+    else if(srsF==='review') okSrs = lvl===2;
+    else if(srsF==='mastered') okSrs = lvl>=3;
+    else if(srsF==='fav') okSrs = isFav(d.w);
+    return okCat && okQ && okSrs;
+  });
+  deck.sort((a,b)=>{
+    const sa = store.srs[a.w]||{level:0}; const sb = store.srs[b.w]||{level:0};
+    const now = Date.now();
+    const da = (sa.next||0) <= now ? 1 : 0;
+    const db = (sb.next||0) <= now ? 1 : 0;
+    if(da!==db) return db-da;
+    return sa.level - sb.level;
+  });
+  cur = 0;
+  renderCard();
+  updateStats();
+}
+
+function renderCard(){
+  if(!deck.length){
+    $('#cardWord').textContent = 'Không có thẻ';
+    $('#cardType').textContent = '—';
+    $('#cardCat').textContent = '';
+    $('#backVi').textContent = 'Thử bộ lọc khác nhé!';
+    $('#backEx').textContent = '—';
+    $('#backSyn').textContent = '—';
+    $('#counterText').textContent = '0 / 0';
+    $('#srsBadge').textContent = '—';
+    $('#srsBadge').className = 'srs new';
+    cardEl.classList.remove('flipped');
+    $('#favBtn').textContent = '☆';
+    $('#favBtn').classList.remove('on');
+    $('#prevBtn').disabled = true;
+    $('#nextBtn').disabled = true;
+    $('#srsBtns').style.display = 'none';
+    return;
+  }
+  const d = deck[cur];
+  flipped = false;
+  cardEl.classList.remove('flipped');
+
+  $('#cardType').textContent = d.t || '—';
+  $('#cardWord').textContent = d.w;
+  $('#cardCat').textContent = d.c;
+  $('#backVi').textContent = d.vi;
+  if(d.ex){ $('#exSec').style.display='block'; $('#backEx').textContent = '“' + d.ex + '”'; }
+  else $('#exSec').style.display='none';
+  if(d.syn){ $('#synSec').style.display='block'; $('#backSyn').textContent = d.syn; }
+  else $('#synSec').style.display='none';
+
+  const s = getSrs(d.w);
+  $('#srsBadge').textContent = SRS_LABELS[s.level];
+  $('#srsBadge').className = 'srs ' + SRS_CLASSES[s.level];
+
+  const fav = isFav(d.w);
+  $('#favBtn').textContent = fav ? '★' : '☆';
+  $('#favBtn').classList.toggle('on', fav);
+
+  $('#counterText').textContent = (cur+1) + ' / ' + deck.length;
+  $('#prevBtn').disabled = cur===0;
+  $('#nextBtn').disabled = cur===deck.length-1;
+  $('#srsBtns').style.display = 'flex';
+}
+
+function flip(){ if(!deck.length) return; flipped=!flipped; cardEl.classList.toggle('flipped',flipped); }
+function next(){ if(cur<deck.length-1){cur++; renderCard();} }
+function prev(){ if(cur>0){cur--; renderCard();} }
+
+cardEl.addEventListener('click', e=>{
+  if(e.target.closest('#favBtn')) return;
+  flip();
+});
+$('#flipBtn').addEventListener('click', flip);
+$('#nextBtn').addEventListener('click', next);
+$('#prevBtn').addEventListener('click', prev);
+$('#catFilter').addEventListener('change', buildDeck);
+$('#srsFilter').addEventListener('change', buildDeck);
+$('#searchBox').addEventListener('input', buildDeck);
+$('#shuffleBtn').addEventListener('click', ()=>{ deck = shuffle(deck); cur=0; renderCard(); });
+
+$('#favBtn').addEventListener('click', e=>{
+  e.stopPropagation();
+  if(!deck.length) return;
+  toggleFav(deck[cur].w);
+  renderCard();
+  updateStats();
+});
+
+$$('.srs-btn').forEach(b=>{
+  b.addEventListener('click', e=>{
+    e.stopPropagation();
+    if(!deck.length) return;
+    const d = deck[cur];
+    const s = getSrs(d.w);
+    const action = b.dataset.srs;
+    let newLevel = s.level;
+    let interval = 0;
+    if(action==='again'){ newLevel = 1; interval = 2*60*1000; }
+    else if(action==='good'){ newLevel = Math.min(2, s.level+1); interval = 12*60*60*1000; }
+    else if(action==='easy'){ newLevel = 3; interval = 3*24*60*60*1000; }
+    s.level = newLevel;
+    s.next = Date.now() + interval;
+    s.seen++;
+    if(newLevel>=3) s.correct++;
+    store.stats.totalReviews++;
+    saveStore();
+    updateStats();
+
+    b.style.transform = 'scale(0.92)';
+    setTimeout(()=>b.style.transform='', 140);
+
+    setTimeout(()=>{ if(cur<deck.length-1) next(); else renderCard(); }, 180);
+  });
+});
+
+document.addEventListener('keydown', e=>{
+  if(!$('#panel-cards').classList.contains('active')) return;
+  if(e.target.tagName==='INPUT'||e.target.tagName==='SELECT') return;
+  if(e.code==='Space'){ e.preventDefault(); flip(); }
+  if(e.code==='ArrowRight') next();
+  if(e.code==='ArrowLeft') prev();
+  if(e.code==='KeyP'){ if(deck.length) speak(deck[cur].w); }
+  if(e.code==='KeyF'){ if(deck.length){ toggleFav(deck[cur].w); renderCard(); updateStats(); } }
+});
+
+/* =========================================================
+   QUIZ
+   ========================================================= */
+const QUIZ_LEN = 10;
+let quizState = { questions:[], i:0, score:0, answered:false };
+
+function pickDistractors(correct, key, n=3){
+  const pool = shuffle(DATA.filter(d => d[key] && d[key] !== correct));
+  const out = [];
+  const seen = new Set([correct]);
+  for(const d of pool){
+    if(out.length>=n) break;
+    if(seen.has(d[key])) continue;
+    seen.add(d[key]);
+    out.push(d[key]);
+  }
+  return out;
+}
+
+function makeQuestion(card){
+  const types = ['en2vi','vi2en'];
+  const w = card.w;
+  let cloze = false;
+  if(!/[\s()–]/.test(w) && w.length>3 && card.ex){
+    const re = new RegExp('\\b'+escRe(w)+'\\b','i');
+    if(re.test(card.ex)) cloze = true;
+  }
+  if(cloze) types.push('cloze','cloze');
+  const type = types[Math.floor(Math.random()*types.length)];
+
+  if(type==='en2vi'){
+    const correct = card.vi;
+    const opts = shuffle([correct, ...pickDistractors(correct,'vi')]);
+    return {
+      q: `Nghĩa của <span class="qword">${card.w}</span> <em>(${card.t})</em> là gì?`,
+      opts, correct, card,
+      explain:`<b>${card.w}</b> (${card.t}) = ${card.vi}.`
+    };
+  }
+  if(type==='vi2en'){
+    const correct = card.w;
+    const opts = shuffle([correct, ...pickDistractors(correct,'w')]);
+    return {
+      q: `Từ / cụm từ nào mang nghĩa: “<span class="qword">${card.vi}</span>”?`,
+      opts, correct, card,
+      explain:`Đáp án: <b>${card.w}</b> (${card.t}).`
+    };
+  }
+  const re = new RegExp('\\b'+escRe(card.w)+'\\b','i');
+  const sentence = card.ex.replace(re,'_____');
+  const correct = card.w;
+  const opts = shuffle([correct, ...pickDistractors(correct,'w')]);
+  return {
+    q: `Điền vào chỗ trống:<br><em>“${sentence}”</em>`,
+    opts, correct, card,
+    explain:`Đáp án: <b>${card.w}</b> — ${card.vi}.`
+  };
+}
+
+function startQuiz(){
+  const pool = shuffle(DATA).slice(0, Math.min(QUIZ_LEN, DATA.length));
+  quizState = { questions: pool.map(makeQuestion), i:0, score:0, answered:false };
+  $('#quizResult').style.display='none';
+  $('#quizMain').style.display='block';
+  renderQuestion();
+}
+
+function renderQuestion(){
+  const s = quizState;
+  if(s.i >= s.questions.length){ showResult(); return; }
+  const q = s.questions[s.i];
+  s.answered = false;
+
+  $('#qBadge').textContent = `CÂU ${s.i+1} / ${s.questions.length}`;
+  $('#qScore').textContent = `Đúng: ${s.score}`;
+  $('#qProgress').style.width = ((s.i)/s.questions.length*100)+'%';
+  $('#qText').innerHTML = q.q;
+
+  const box = $('#qOptions');
+  box.innerHTML = '';
+  const letters = ['A','B','C','D'];
+  q.opts.forEach((o,idx)=>{
+    const b = document.createElement('button');
+    b.className = 'opt';
+    b.innerHTML = `<span class="key">${letters[idx]}</span><span>${o}</span>`;
+    b.addEventListener('click', ()=>answer(b, o, q));
+    box.appendChild(b);
+  });
+
+  const fb = $('#qFeedback');
+  fb.className = 'feedback';
+  fb.innerHTML = '';
+  $('#qNext').style.display = 'none';
+  $('#qNext').textContent = (s.i === s.questions.length-1) ? 'Xem kết quả ✨' : 'Câu tiếp →';
+}
+
+function answer(btn, chosen, q){
+  if(quizState.answered) return;
+  quizState.answered = true;
+  const ok = chosen === q.correct;
+  if(ok) quizState.score++;
+  store.stats.quizTotal++;
+  if(ok) store.stats.quizCorrect++;
+  if(ok) setSrsLevel(q.card.w, getSrs(q.card.w).level+1);
+  else setSrsLevel(q.card.w, 0);
+  saveStore();
+
+  $$('#qOptions .opt').forEach(b=>{
+    b.classList.add('locked');
+    const txt = b.querySelector('span:last-child').textContent;
+    if(txt === q.correct) b.classList.add('correct');
+  });
+  if(!ok) btn.classList.add('wrong');
+
+  const fb = $('#qFeedback');
+  fb.className = 'feedback show ' + (ok?'ok':'no');
+  fb.innerHTML = (ok?'✅ <b>Chính xác!</b> ':'❌ <b>Chưa đúng.</b> ') + q.explain;
+
+  $('#qScore').textContent = `Đúng: ${quizState.score}`;
+  $('#qProgress').style.width = ((quizState.i+1)/quizState.questions.length*100)+'%';
+  $('#qNext').style.display = 'inline-block';
+}
+
+$('#qNext').addEventListener('click', ()=>{
+  quizState.i++;
+  renderQuestion();
+});
+
+function showResult(){
+  const s = quizState;
+  const total = s.questions.length;
+  const pct = Math.round(s.score/total*100);
+  let msg, sub;
+  if(pct>=90){ msg='Xuất sắc! Bạn là công dân gương mẫu 🏆'; sub='Kiến thức từ vựng rất vững.'; }
+  else if(pct>=70){ msg='Rất tốt! Gần đạt mức tối ưu 💪'; sub='Chỉ cần ôn thêm vài từ khó.'; }
+  else if(pct>=50){ msg='Khá ổn! Cần luyện thêm 📖'; sub='Xem lại các từ sai trong chế độ Flashcards.'; }
+  else { msg='Cần cố gắng thêm! Đừng nản 🌱'; sub='Quay lại ôn flashcards và thử lại nhé.'; }
+
+  $('#quizMain').style.display='none';
+  const r = $('#quizResult');
+  r.style.display='block';
+  r.className='result';
+  r.innerHTML = `
+    <div class="ring" style="--pct:${pct}%">
+      <div class="num">${s.score}/${total}<small>${pct}%</small></div>
+    </div>
+    <div class="msg">${msg}</div>
+    <div class="sub">${sub}</div>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <button class="btn" id="againBtn">🔄 Làm lại (10 câu mới)</button>
+      <button class="btn ghost" id="toCardsBtn">🃏 Ôn flashcards</button>
+    </div>`;
+  $('#againBtn').addEventListener('click', startQuiz);
+  $('#toCardsBtn').addEventListener('click', ()=> $('.tab[data-tab="cards"]').click());
+  updateStats();
+}
+
+/* =========================================================
+   TYPING MODE
+   ========================================================= */
+const TYPING_LEN = 10;
+let typingState = { words:[], i:0, score:0, answered:false, current:null };
+
+function startTyping(){
+  const pool = shuffle(DATA).slice(0, Math.min(TYPING_LEN, DATA.length));
+  typingState = { words: pool, i:0, score:0, answered:false, current:null };
+  $('#tScore').textContent = 'Đúng: 0';
+  renderTyping();
+}
+
+function renderTyping(){
+  const s = typingState;
+  if(s.i >= s.words.length){
+    $('#tPrompt').innerHTML = `<span style="color:var(--neon-green)">🎉 Hoàn thành! Bạn đúng ${s.score}/${s.words.length} từ.</span>`;
+    $('#tHint').textContent = 'Nhấn "Bắt đầu lại" để luyện tiếp.';
+    $('#tInput').disabled = true;
+    $('#tCheck').disabled = true;
+    $('#tSkip').textContent = 'Bắt đầu lại';
+    $('#tSkip').onclick = ()=>{ startTyping(); $('#tSkip').textContent='Bỏ qua'; $('#tSkip').onclick=skipTyping; $('#tInput').disabled=false; $('#tCheck').disabled=false; };
+    return;
+  }
+  const d = s.words[s.i];
+  s.current = d;
+  s.answered = false;
+  $('#tBadge').textContent = `TỪ ${s.i+1} / ${s.words.length}`;
+  $('#tPrompt').innerHTML = `Viết từ tiếng Anh có nghĩa: <span class="vi-hl">${d.vi}</span>`;
+  const len = d.w.length;
+  const first = d.w[0];
+  const rest = d.w.slice(1).split('').map(ch => ch===' ' ? ' ' : '_').join('');
+  $('#tHint').innerHTML = `Gợi ý: <span class="mono">${first}${rest}</span> <span class="blurred">(${d.w})</span>`;
+  $('#tHint').classList.remove('revealed');
+  $('#tInput').value = '';
+  $('#tInput').className = 'type-input';
+  $('#tInput').disabled = false;
+  $('#tInput').focus();
+  $('#tCheck').disabled = false;
+  $('#tFeedback').className = 'type-feedback';
+  $('#tFeedback').innerHTML = '';
+}
+
+function checkTyping(){
+  const s = typingState;
+  if(s.answered || !s.current) return;
+  const input = $('#tInput').value.trim();
+  if(!input) return;
+  const correct = norm(s.current.w);
+  const given = norm(input);
+  const ok = given === correct;
+  s.answered = true;
+  store.stats.typingTotal++;
+  if(ok){ s.score++; store.stats.typingCorrect++; setSrsLevel(s.current.w, getSrs(s.current.w).level+1); }
+  else setSrsLevel(s.current.w, 0);
+  saveStore();
+
+  $('#tScore').textContent = `Đúng: ${s.score}`;
+  $('#tInput').className = 'type-input ' + (ok?'correct':'wrong');
+  const fb = $('#tFeedback');
+  if(ok){
+    fb.className = 'type-feedback show ok';
+    fb.innerHTML = `✅ Chính xác! <span class="ans">${s.current.w}</span>`;
+  }else{
+    fb.className = 'type-feedback show no';
+    fb.innerHTML = `❌ Chưa đúng. Đáp án: <span class="ans">${s.current.w}</span>`;
+  }
+  setTimeout(()=>{ s.i++; renderTyping(); }, ok?700:1500);
+}
+
+function skipTyping(){
+  const s = typingState;
+  if(!s.current) return;
+  if(!s.answered){
+    setSrsLevel(s.current.w, 0);
+    saveStore();
+  }
+  s.i++;
+  renderTyping();
+}
+
+$('#tCheck').addEventListener('click', checkTyping);
+$('#tSkip').addEventListener('click', skipTyping);
+$('#tReveal').addEventListener('click', ()=>{
+  $('#tHint').classList.add('revealed');
+});
+$('#tInput').addEventListener('keydown', e=>{
+  if(e.key==='Enter'){ e.preventDefault(); checkTyping(); }
+});
+$('#tInput').addEventListener('keypress', e=>{
+  if(e.key===' ') e.stopPropagation();
+});
+
+/* =========================================================
+   MATCH GAME
+   ========================================================= */
+const MATCH_PAIRS = 5;
+let matchState = { pairs:[], selectedLeft:null, selectedRight:null, matched:0, lock:false };
+
+function startMatch(){
+  const pool = shuffle(DATA).slice(0, MATCH_PAIRS);
+  matchState = { pairs: pool, selectedLeft:null, selectedRight:null, matched:0, lock:false };
+  renderMatch();
+}
+
+function renderMatch(){
+  const left = $('#matchLeft');
+  const right = $('#matchRight');
+  left.innerHTML = '';
+  right.innerHTML = '';
+
+  const words = shuffle(matchState.pairs);
+  const defs = shuffle(matchState.pairs);
+
+  words.forEach(d=>{
+    const el = document.createElement('button');
+    el.className = 'match-item';
+    el.textContent = d.w;
+    el.dataset.word = d.w;
+    el.addEventListener('click', ()=> selectMatch(el, 'left'));
+    left.appendChild(el);
+  });
+
+  defs.forEach(d=>{
+    const el = document.createElement('button');
+    el.className = 'match-item';
+    el.textContent = d.vi;
+    el.dataset.word = d.w;
+    el.addEventListener('click', ()=> selectMatch(el, 'right'));
+    right.appendChild(el);
+  });
+
+  $('#matchScore').textContent = `Đã nối: 0 / ${MATCH_PAIRS}`;
+  $('#matchSuccess').classList.remove('show');
+}
+
+function selectMatch(el, side){
+  if(matchState.lock || el.classList.contains('matched')) return;
+  
+  if(side === 'left'){
+    if(matchState.selectedLeft) matchState.selectedLeft.classList.remove('selected');
+    matchState.selectedLeft = el;
+    el.classList.add('selected');
+  } else {
+    if(matchState.selectedRight) matchState.selectedRight.classList.remove('selected');
+    matchState.selectedRight = el;
+    el.classList.add('selected');
+  }
+
+  if(matchState.selectedLeft && matchState.selectedRight){
+    checkMatch();
+  }
+}
+
+function checkMatch(){
+  const l = matchState.selectedLeft;
+  const r = matchState.selectedRight;
+  const match = l.dataset.word === r.dataset.word;
+
+  matchState.lock = true;
+
+  if(match){
+    l.classList.remove('selected');
+    r.classList.remove('selected');
+    l.classList.add('matched');
+    r.classList.add('matched');
+    matchState.matched++;
+    $('#matchScore').textContent = `Đã nối: ${matchState.matched} / ${MATCH_PAIRS}`;
+    matchState.selectedLeft = null;
+    matchState.selectedRight = null;
+    matchState.lock = false;
+    
+    if(matchState.matched === MATCH_PAIRS){
+      $('#matchSuccess').classList.add('show');
+      saveStore();
+    }
+  } else {
+    l.classList.add('wrong-match');
+    r.classList.add('wrong-match');
+    setTimeout(()=>{
+      l.classList.remove('selected', 'wrong-match');
+      r.classList.remove('selected', 'wrong-match');
+      matchState.selectedLeft = null;
+      matchState.selectedRight = null;
+      matchState.lock = false;
+    }, 600);
+  }
+}
+
+$('#matchReset').addEventListener('click', startMatch);
+
+/* =========================================================
+   LIST VIEW
+   ========================================================= */
+function renderList(){
+  const q = ($('#listSearch').value||'').trim().toLowerCase();
+  const box = $('#listContainer');
+  box.innerHTML = '';
+  let total = 0;
+  cats.forEach(c=>{
+    const items = DATA.filter(d=>d.c===c && (!q
+      || d.w.toLowerCase().includes(q)
+      || d.vi.toLowerCase().includes(q)
+      || (d.ex||'').toLowerCase().includes(q)
+      || (d.syn||'').toLowerCase().includes(q)));
+    if(!items.length) return;
+    total += items.length;
+    const g = document.createElement('div');
+    g.className='grp';
+    g.innerHTML = `<h3><span class="dot"></span>${c} · ${items.length} từ</h3>`;
+    items.forEach(d=>{
+      const row = document.createElement('div');
+      row.className='row';
+      const s = store.srs[d.w];
+      const lvl = s ? s.level : 0;
+      const fav = isFav(d.w);
+      const badge = lvl>0 ? ` <span style="color:var(--neon-green);font-size:10px">[${SRS_LABELS[lvl]}]</span>` : '';
+      row.innerHTML = `
+        <div class="w-line">
+          <span class="w">${d.w}</span>
+          <span class="t">${d.t||''}</span>
+          ${fav?'<span class="fav-mark">★</span>':''}
+          ${badge}
+        </div>
+        <div class="vi">${d.vi}</div>
+        ${d.ex?`<div class="ex">“${d.ex}”</div>`:''}
+        ${d.syn?`<div class="ex" style="color:var(--neon-green)">↳ ${d.syn}</div>`:''}`;
+      g.appendChild(row);
+    });
+    box.appendChild(g);
+  });
+  if(!total) box.innerHTML = '<div class="empty">🔍 Không tìm thấy từ vựng nào</div>';
+}
+$('#listSearch').addEventListener('input', renderList);
+
+/* =========================================================
+   INIT
+   ========================================================= */
+buildDeck();
+updateStats();
+</script>
+</body>
+</html>
